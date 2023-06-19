@@ -30,7 +30,17 @@ namespace ConsoleApp
         {
             Console.WriteLine(Literal.div);
             Console.WriteLine(Literal.menu);
-            int input = Convert.ToInt32(Console.ReadLine());
+
+            int input;
+            try
+            { 
+                input = Convert.ToInt32(Console.ReadLine()); 
+            }
+            catch (FormatException)
+            {
+                input = 0;
+            }
+
             int redirect = input;
             bool flag = true;
             while (flag)
