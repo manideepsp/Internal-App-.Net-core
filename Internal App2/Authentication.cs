@@ -147,11 +147,11 @@ namespace ConsoleApp
 
             Console.Write(Literal.username);
             user.Username = Console.ReadLine();
-            flag = false; //returns true if username doesnot exist
-            if (!flag)
+            flag = bllAuthentication.IsUserExist(user); //returns true if username exist
+            if (flag)
             {
                 Console.WriteLine(Literal.validPassword);
-                flag = false; //returns true if password is valid
+                flag = false;
                 while (!flag)
                 {
                     Console.Write(Literal.passwordAgain);
