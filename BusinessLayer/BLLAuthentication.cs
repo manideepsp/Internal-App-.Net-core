@@ -52,5 +52,11 @@ namespace BusinessLayer
             }
             return false;
         }
+        public void UpdatePassword(User user)
+        {
+            IDAL dal = dataFactory.GetDALAuthObj();
+
+            dal.UpdatePassword(user);
+        }
     }
 }

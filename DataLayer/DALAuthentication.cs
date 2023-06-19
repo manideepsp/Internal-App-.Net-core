@@ -15,6 +15,19 @@ namespace DataLayer
         }
 
         /// <summary>
+        /// Updates the user password
+        /// </summary>
+        /// <param name="user"></param>
+        public void UpdatePassword(User user)
+        {
+            User obj = DALDataSources.UserData.Find(obj => obj.Username == user.Username);
+            if (obj != null)
+            {
+                obj.Password = user.Password;
+            }
+        }
+
+        /// <summary>
         /// checks if the username, overloaded with another method with similar functionality
         /// </summary>
         /// <param name="username"></param>

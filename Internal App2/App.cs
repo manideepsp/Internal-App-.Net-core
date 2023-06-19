@@ -67,10 +67,10 @@ namespace ConsoleApp
                         Console.WriteLine(Literal.div, Literal.loginSuccess, Literal.logout);
                         redirect = auth.Logout();
                         break;
-                    // Default
-                    default:
-                        Console.WriteLine(Literal.div + Literal.switchDefault);
-                        redirect = auth.SwitchDefault();
+                    // Forgot password / Change password
+                    case Redirect.ForgotPassword:
+                        Console.WriteLine(Literal.forgotPassword);
+                        redirect = auth.forgotPassword(user);
                         break;
                 }
             }

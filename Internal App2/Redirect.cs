@@ -3,5 +3,5 @@
     /// <summary>
     /// contains enumerated types login, logout, register, exit
     /// </summary>
-    public enum Redirect { login = 1, register = 2, logout = 3, exit = 4 }
+    public enum Redirect { exit = 0, login = 1, register = 2, ForgotPassword = 3,logout = 4 }
 }

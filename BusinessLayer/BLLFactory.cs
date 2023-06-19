@@ -2,16 +2,16 @@
 {
     public class BLLFactory
     {
-        BLLAuthentication balAuthObj = new BLLAuthentication();
-        BLLValidation balValidationObj = new BLLValidation();
+        BLLAuthentication bllAuthObj = new BLLAuthentication();
+        BLLValidation bllValidationObj = new BLLValidation();
 
-        public IBLLAuthentication GetBalAuthObj()
+        public IBLLAuthentication GetBllAuthObj()
         {
-            return balAuthObj;
+            return bllAuthObj;
         }
-        public IBLLValidation GetBalValidationObj()
+        public IBLLValidation GetBllValidationObj()
         {
-            return balValidationObj;
+            return bllValidationObj;
         }
     }
 }
