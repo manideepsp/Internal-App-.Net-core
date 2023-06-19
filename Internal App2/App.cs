@@ -40,6 +40,8 @@ namespace ConsoleApp
                     // Exit
                     case 0:
                         flag = false;
+                        Console.WriteLine(Literal.div, Literal.exit);
+                        Environment.Exit(0);
                         break;
                     // Login
                     case 1:

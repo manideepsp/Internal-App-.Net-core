@@ -32,6 +32,7 @@
         public static string successRegistration = "\nUser created Successfully ! ";
         public static string successForgotPassword = "\nPassword changed successfully, redirecting to login page";
         public static string successLogout = "\nLogged out successfully, redirecting to login page.";
+        public static string exit = "Exiting the Application...";
 
         public static string loginSuccess = "\nLogin successfull, welcome User.";
         public static string loginFail = "\nLogin failed, create new user";
@@ -50,7 +51,6 @@
         public static string mobileAgain = "\nEnter Valid Mobile number : ";
         public static string email = "\nEnter Email ID: ";
         public static string emailAgain = "\nEnter Valid Email ID: ";
-
 
         public static void Display(string s)
         {
