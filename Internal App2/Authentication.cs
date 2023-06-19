@@ -35,7 +35,7 @@ namespace ConsoleApp
             else
             {
                 Console.WriteLine(Literal.loginFail);
-                inputKey= Console.ReadKey();
+                inputKey = Console.ReadKey();
                 if (inputKey.Key == ConsoleKey.D1)
                 {
                     return Redirect.register;
@@ -59,7 +59,7 @@ namespace ConsoleApp
         public Redirect Logout()
         {
             Console.WriteLine(Literal.logout);
-            inputKey= Console.ReadKey();
+            inputKey = Console.ReadKey();
             if (inputKey.Key == ConsoleKey.Y)
             {
                 Console.WriteLine(Literal.logoutSuccess);
@@ -90,48 +90,42 @@ namespace ConsoleApp
             }
 
             Console.WriteLine(Literal.validPassword);
-            Console.Write(Literal.password);
-            user.Password = Console.ReadLine();
-            flag = bllValidation.IsValidPassword(user.Password); //returns true if password is valid
+            flag = false; //returns true if password is valid
             while (!flag)
             {
-                Console.Write(Literal.passwordAgain);
+                Console.Write(Literal.password);
                 user.Password = Console.ReadLine();
-                flag = bllValidation.IsValidPassword(user.Password);
+                flag = bllValidation.IsValidPassword(user.Password); //returns true if password is valid
             }
-            Console.Write(Literal.confirmPassword);
-            user.ConfirmPassword = Console.ReadLine();
-            flag = bllValidation.IsPasswordEquals(user.Password, user.ConfirmPassword); //returns true if password mathces
+
+            flag = false;
             while (!flag)
             {
                 Console.Write(Literal.confirmPassword);
                 user.ConfirmPassword = Console.ReadLine();
-                flag = bllValidation.IsPasswordEquals(user.Password, user.ConfirmPassword);
+                flag = bllValidation.IsPasswordEquals(user.Password, user.ConfirmPassword); //returns true if password mathces
             }
 
-            Console.Write(Literal.mobile);
-            user.Mobile = Console.ReadLine();
-            flag = bllValidation.IsValidMobile(user.Mobile); //returns true if mobile is valid
+            flag = false;
             while (!flag)
             {
-                Console.Write(Literal.mobileAgain);
+                Console.Write(Literal.mobile);
                 user.Mobile = Console.ReadLine();
-                flag = bllValidation.IsValidMobile(user.Mobile);
+                flag = bllValidation.IsValidMobile(user.Mobile); //returns true if mobile is valid
             }
 
-            Console.Write(Literal.email);
-            user.Email = Console.ReadLine();
-            flag = bllValidation.IsValidEmail(user.Email); //returns true if email is valid
+            flag = false; 
             while (!flag)
             {
                 Console.Write(Literal.emailAgain);
                 user.Email = Console.ReadLine();
-                flag = bllValidation.IsValidEmail(user.Email);
+                flag = bllValidation.IsValidEmail(user.Email); //returns true if email is valid
             }
+
             bllAuthentication.Register(user);
             Console.WriteLine(Literal.div + Literal.registrationSuccess);
 
-            inputKey= Console.ReadKey();
+            inputKey = Console.ReadKey();
             if (inputKey.Key == ConsoleKey.D1)
             {
                 return Redirect.login;
@@ -153,27 +147,23 @@ namespace ConsoleApp
 
             Console.Write(Literal.username);
             user.Username = Console.ReadLine();
-            flag = bllAuthentication.IsUserExist(user); //returns true if username doesnot exist
+            flag = false; //returns true if username doesnot exist
             if (!flag)
             {
                 Console.WriteLine(Literal.validPassword);
-                Console.Write(Literal.password);
-                user.Password = Console.ReadLine();
-                flag = bllValidation.IsValidPassword(user.Password); //returns true if password is valid
+                flag = false; //returns true if password is valid
                 while (!flag)
                 {
                     Console.Write(Literal.passwordAgain);
                     user.Password = Console.ReadLine();
-                    flag = bllValidation.IsValidPassword(user.Password);
+                    flag = bllValidation.IsValidPassword(user.Password); //returns true if password is valid
                 }
-                Console.Write(Literal.confirmPassword);
-                user.ConfirmPassword = Console.ReadLine();
-                flag = bllValidation.IsPasswordEquals(user.Password, user.ConfirmPassword); //returns true if password mathces
+                flag = false;
                 while (!flag)
                 {
                     Console.Write(Literal.confirmPassword);
                     user.ConfirmPassword = Console.ReadLine();
-                    flag = bllValidation.IsPasswordEquals(user.Password, user.ConfirmPassword);
+                    flag = bllValidation.IsPasswordEquals(user.Password, user.ConfirmPassword); //returns true if password mathces
                 }
                 bllAuthentication.UpdatePassword(user);
                 Console.WriteLine(Literal.forgotPasswordSuccess);
@@ -182,7 +172,7 @@ namespace ConsoleApp
             else
             {
                 Console.WriteLine(Literal.forgotPasswordFail);
-                inputKey= Console.ReadKey();
+                inputKey = Console.ReadKey();
                 if (inputKey.Key == ConsoleKey.D1)
                 {
                     return Redirect.ForgotPassword;
