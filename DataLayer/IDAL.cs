@@ -2,6 +2,9 @@
 
 namespace DataLayer
 {
+    /// <summary>
+    /// Interface defining the methods that to be used with Factory pattern
+    /// </summary>
     public interface IDAL
     {
         /// <summary>

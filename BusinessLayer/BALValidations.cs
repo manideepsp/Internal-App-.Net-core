@@ -1,5 +1,4 @@
 ﻿using DataLayer;
-using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace BusinessLayer
@@ -50,11 +49,16 @@ namespace BusinessLayer
         /// <returns></returns>
         public bool IsValidPassword(string password)
         {
-            if (password == null || password.Length < 8 || Regex.IsMatch(password, "[a-z]") == false || Regex.IsMatch(password, "[A-Z]") == false || Regex.IsMatch(password, "[0-9]") == false)
+            // Regex pattern for password validation
+            string pattern = @"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,}$";
+
+            return Regex.IsMatch(password, pattern);
+
+            /*if (password == null || password.Length < 8 || Regex.IsMatch(password, "[a-z]") == false || Regex.IsMatch(password, "[A-Z]") == false || Regex.IsMatch(password, "[0-9]") == false)
             {
                 return false;
             }
-            return true;
+            return true;*/
         }
 
         /// <summary>
@@ -76,11 +80,10 @@ namespace BusinessLayer
         /// <returns></returns>
         public bool IsValidEmail(string email)
         {
-            if (email.Contains("@") && email.Contains(".") && email.IndexOf("@") < email.IndexOf("."))
-            {
-                return true;
-            }
-            return false;
+            // Regex pattern for email validation
+            string pattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
+
+            return Regex.IsMatch(email, pattern);
         }
 
         /// <summary>
@@ -90,26 +93,10 @@ namespace BusinessLayer
         /// <returns></returns>
         public bool IsValidMobile(string mobileNumber)
         {
-            if (mobileNumber.Count() == 10 && IsDigitsOnly(mobileNumber))
-            {
-                return true;
-            }
-            else return false;
-        }
+            // Regex pattern for validating Indian mobile numbers
+            string pattern = @"^[6-9]\d{9}$";
 
-        /// <summary>
-        /// snippet checks if the given string contains all numbers or not
-        /// </summary>
-        /// <param name="str"></param>
-        /// <returns></returns>
-        private bool IsDigitsOnly(string str)
-        {
-            foreach (char c in str)
-            {
-                if (c < '0' || c > '9')
-                    return false;
-            }
-            return true;
+            return Regex.IsMatch(mobileNumber, pattern);
         }
     }
 }

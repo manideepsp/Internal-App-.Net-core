@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using BusinessModel;
+using System.Collections.Generic;
 
 namespace DataLayer
 {
+    /// <summary>
+    /// Class containing the datasource
+    /// </summary>
     internal class DataSources
     {
-        public static List<List<string>> userData = new List<List<string>>();
-        public static List<string> listData = new List<string>();
+        public static List<User> UserData = new List<User>();
     }
 }

@@ -11,14 +11,13 @@ namespace DataLayer
         /// <returns></returns>
         public void Register(User user)
         {
-            DataSources.listData.Add(user.Username);
-            DataSources.listData.Add(user.Password);
-            DataSources.listData.Add(user.Mobile);
-            DataSources.listData.Add(user.Email);
-
-            DataSources.userData.Add(DataSources.listData);
+            //DataSources.listData.Add(user.Username);
+            //DataSources.listData.Add(user.Password);
+            //DataSources.listData.Add(user.Mobile);
+            //DataSources.listData.Add(user.Email);
+            //DataSources.userData.Add(DataSources.listData);
+            DataSources.UserData.Add(user);
         }
-
         /// <summary>
         /// checks if the username, overloaded with another method with similar functionality
         /// </summary>
@@ -26,9 +25,9 @@ namespace DataLayer
         /// <returns></returns>
         public bool IsUserExist(string username)
         {
-            for (int i = 0; i < DataSources.userData.Count; i++)
+            for (int i = 0; i < DataSources.UserData.Count; i++)
             {
-                if (DataSources.userData[i].Contains(username))
+                if (DataSources.UserData[i].Username == username)
                     return true;
             }
             return false;
@@ -42,9 +41,9 @@ namespace DataLayer
         /// <returns></returns>
         public bool IsLoginExist(string username, string password)
         {
-            for (int i = 0; i < DataSources.userData.Count; i++)
+            for (int i = 0; i < DataSources.UserData.Count; i++)
             {
-                if (DataSources.userData[i].Contains(username) && DataSources.userData[i].Contains(password))
+                if (DataSources.UserData[i].Username == username && DataSources.UserData[i].Password == password)
                     return true;
             }
             return false;
