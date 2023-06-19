@@ -19,7 +19,6 @@ namespace ConsoleApp
         public Redirect Login(User user)
         {
             IBLLAuthentication balAuthentication = balFactory.GetBalAuthObj();
-            Console.WriteLine(Literal.login);
             Console.Write(Literal.username);
             user.Username = Console.ReadLine();
             Console.WriteLine(Literal.password);
@@ -65,7 +64,6 @@ namespace ConsoleApp
             IBLLValidation bALValidation = balFactory.GetBalValidationObj();
 
             bool flag = true;
-            Console.WriteLine(Literal.register);
             Console.Write(Literal.username);
             user.Username = Console.ReadLine();
             flag = balAuthentication.IsUserExist(user); //returns true if username is valid, not already exist
