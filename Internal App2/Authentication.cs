@@ -37,7 +37,10 @@ namespace ConsoleApp
             }
         }
 
-        //Implements logout Functionality
+        /// <summary>
+        /// Implements logout Functionality
+        /// </summary>
+        /// <returns></returns>
         public Redirect Logout()
         {
             Console.WriteLine(Literal.logout);
@@ -51,7 +54,11 @@ namespace ConsoleApp
             return Redirect.logout;
         }
 
-        //Implements Register authentication signature
+        /// <summary>
+        /// Implements Register authentication signature
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public Redirect Register(User user)
         {
             IBLLAuthentication balAuthentication = balFactory.GetBalAuthObj();
@@ -111,7 +118,10 @@ namespace ConsoleApp
             return Redirect.login;
         }
 
-        //Implements SwitchDefault Functionality
+        /// <summary>
+        /// Implements SwitchDefault Functionality
+        /// </summary>
+        /// <returns></returns>
         public Redirect SwitchDefault()
         {
             Console.WriteLine(Literal.switchDefault);
