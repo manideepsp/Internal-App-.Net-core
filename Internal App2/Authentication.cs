@@ -1,5 +1,6 @@
 ﻿using BusinessLayer;
 using BusinessModel;
+using System;
 
 namespace ConsoleApp
 {
@@ -8,15 +9,6 @@ namespace ConsoleApp
     /// </summary>
     public class Authentication
     {
-        private BALAuthentication balAuth;
-        private BALValidations validate;
-
-        public Authentication()
-        {
-            validate = new BALValidations();
-            balAuth = new BALAuthentication();
-        }
-
         /// <summary>
         /// Implements login authentication signature
         /// </summary>
@@ -25,13 +17,16 @@ namespace ConsoleApp
         /// <returns></returns>
         public Redirect Login(User user)
         {
+            BALFactory balFactory = new BALFactory();
+            IBALAuthentication balAuthentication = balFactory.GetBalAuthObj();
+
             Console.WriteLine(Literal.login);
             Console.Write(Literal.username);
             user.Username = Console.ReadLine();
             Console.WriteLine(Literal.password);
             user.Password = Console.ReadLine();
 
-            if (balAuth.Login(user))
+            if (balAuthentication.Login(user))
             {
                 Console.WriteLine(Literal.loginSuccess);
                 return Redirect.logout;
@@ -43,11 +38,13 @@ namespace ConsoleApp
             }
         }
 
-        //Implements logout authentication signature
+        //Implements logout Functionality
         public Redirect Logout()
         {
             Console.WriteLine(Literal.logout);
-            if (balAuth.Logout())
+
+            ConsoleKeyInfo cki = Console.ReadKey();
+            if (cki.Key == ConsoleKey.Y)
             {
                 Console.WriteLine(Literal.successLogout);
                 return Redirect.login;
@@ -58,11 +55,15 @@ namespace ConsoleApp
         //Implements Register authentication signature
         public Redirect Register(User user)
         {
+            BALFactory balFactory = new BALFactory();
+            IBALAuthentication balAuthentication = balFactory.GetBalAuthObj();
+            IBALValidation bALValidation = balFactory.GetBalValidationObj();
+
             bool flag = true;
             Console.WriteLine(Literal.register);
             Console.Write(Literal.username);
             user.Username = Console.ReadLine();
-            flag = balAuth.IsUserExist(user.Username); //returns true if username is valid, not already exist
+            flag = balAuthentication.IsUserExist(user); //returns true if username is valid, not already exist
             if (!flag)
             {
                 Console.WriteLine(Literal.userExist);
@@ -72,55 +73,57 @@ namespace ConsoleApp
             Console.WriteLine(Literal.validPassword);
             Console.Write(Literal.password);
             user.Password = Console.ReadLine();
-            flag = validate.IsValidPassword(user.Password); //returns true if password is valid
+            flag = bALValidation.IsValidPassword(user.Password); //returns true if password is valid
             while (!flag)
             {
                 Console.Write(Literal.passwordAgain);
                 user.Password = Console.ReadLine();
-                flag = validate.IsValidPassword(user.Password);
+                flag = bALValidation.IsValidPassword(user.Password);
             }
             Console.Write(Literal.confirmPassword);
             user.ConfirmPassword = Console.ReadLine();
-            flag = validate.IsPasswordEquals(user.Password, user.ConfirmPassword); //returns true if password mathces
+            flag = bALValidation.IsPasswordEquals(user.Password, user.ConfirmPassword); //returns true if password mathces
             while (!flag)
             {
                 Console.Write(Literal.confirmPassword);
                 user.ConfirmPassword = Console.ReadLine();
-                flag = validate.IsPasswordEquals(user.Password, user.ConfirmPassword);
+                flag = bALValidation.IsPasswordEquals(user.Password, user.ConfirmPassword);
             }
 
             Console.Write(Literal.mobile);
             user.Mobile = Console.ReadLine();
-            flag = validate.IsValidMobile(user.Mobile); //returns true if mobile is valid
+            flag = bALValidation.IsValidMobile(user.Mobile); //returns true if mobile is valid
             while (!flag)
             {
                 Console.Write(Literal.mobileAgain);
                 user.Mobile = Console.ReadLine();
-                flag = validate.IsValidMobile(user.Mobile);
+                flag = bALValidation.IsValidMobile(user.Mobile);
             }
 
             Console.Write(Literal.email);
             user.Email = Console.ReadLine();
-            flag = validate.IsValidEmail(user.Email); //returns true if email is valid
+            flag = bALValidation.IsValidEmail(user.Email); //returns true if email is valid
             while (!flag)
             {
                 Console.Write(Literal.emailAgain);
                 user.Email = Console.ReadLine();
-                flag = validate.IsValidEmail(user.Email);
+                flag = bALValidation.IsValidEmail(user.Email);
             }
-            balAuth.Register(user);
+            balAuthentication.Register(user);
             return Redirect.login;
         }
 
-        //Implements SwitchDefault signature
+        //Implements SwitchDefault Functionality
         public Redirect SwitchDefault()
         {
             Console.WriteLine(Literal.switchDefault);
-            if (balAuth.SwitchDefault())
+
+            ConsoleKeyInfo cki = Console.ReadKey();
+            if (cki.Key == ConsoleKey.Y)
             {
                 return Redirect.exit;
             }
-            return Redirect.login;
+            return Redirect.login;            
         }
     }
 }

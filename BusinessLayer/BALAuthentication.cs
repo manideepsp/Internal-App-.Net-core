@@ -3,7 +3,7 @@ using DataLayer;
 
 namespace BusinessLayer
 {
-    public class BALAuthentication
+    internal class BALAuthentication : IBALAuthentication
     {
         /// <summary>
         /// Implements Register user functionality, validates all the inputs given and calls method to write it to database
@@ -20,6 +20,11 @@ namespace BusinessLayer
             Console.WriteLine(Literal.successRegistration);
         }
 
+        /// <summary>
+        /// Checks if the user exists in the Data Source
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public bool IsUserExist(User user)
         {
             DALFactory dataFactory = new DALFactory();
@@ -32,19 +37,8 @@ namespace BusinessLayer
             return false;
         }
 
-        public bool IsLoginExist(User user)
-        {
-            DALFactory dataFactory = new DALFactory();
-            IDAL dal = dataFactory.GetDALAuthObj();
-            if (dal.IsLoginExist(user))
-            {
-                return true;
-            }
-            return false;
-        }
-
         /// <summary>
-        /// 
+        /// Checks if user and password pair exist in the DataSource
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
@@ -57,46 +51,7 @@ namespace BusinessLayer
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Implements the logout functionality
-        /// </summary>
-        /// <param name="lit"></param>
-        /// <returns></returns>
-        public bool Logout()
-        {
-            ConsoleKeyInfo cki = Console.ReadKey();
-            if (cki.Key == ConsoleKey.Y)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Implements the Switch default functionality
-        /// </summary>
-        /// <param name="lit"></param>
-        /// <returns></returns>
-        public bool SwitchDefault()
-        {
-            ConsoleKeyInfo cki = Console.ReadKey();
-            if (cki.Key == ConsoleKey.Y)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return false;
         }
     }
 }

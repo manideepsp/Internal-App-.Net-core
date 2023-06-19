@@ -3,7 +3,7 @@
     /// <summary>
     /// Factory class used for object creation of DALAuthentication
     /// </summary>
-    public class DataFactory
+    public class DALFactory
     {
         DALAuthentication obj = new DALAuthentication();
         /// <summary>

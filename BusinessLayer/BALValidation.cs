@@ -1,12 +1,11 @@
-﻿using DataLayer;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace BusinessLayer
 {
     /// <summary>
     /// contains the logic for the validations of the input given
     /// </summary>
-    public class BALValidations
+    internal class BALValidation : IBALValidation
     {
         /// <summary>
         /// checks the validation for the password using regex

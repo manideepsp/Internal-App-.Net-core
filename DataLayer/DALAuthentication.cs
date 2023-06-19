@@ -13,6 +13,7 @@ namespace DataLayer
         {
             DALDataSources.UserData.Add(user);
         }
+
         /// <summary>
         /// checks if the username, overloaded with another method with similar functionality
         /// </summary>
