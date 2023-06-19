@@ -1,6 +1,5 @@
 ﻿using BusinessLayer;
 using BusinessModel;
-using System;
 
 namespace ConsoleApp
 {
@@ -24,7 +23,7 @@ namespace ConsoleApp
         /// <param name="user"></param>
         /// <param name="lit"></param>
         /// <returns></returns>
-        public int Login(User user)
+        public Redirect Login(User user)
         {
             Console.WriteLine(Literal.login);
             Console.Write(Literal.username);
@@ -35,28 +34,28 @@ namespace ConsoleApp
             if (balAuth.Login(user))
             {
                 Console.WriteLine(Literal.loginSuccess);
-                return 4;
+                return Redirect.logout;
             }
             else
             {
                 Console.WriteLine(Literal.loginFail);
-                return 1;
+                return Redirect.login;
             }
         }
 
         //Implements logout authentication signature
-        public int Logout()
+        public Redirect Logout()
         {
             Console.WriteLine(Literal.logout);
             if (balAuth.Logout())
             {
-                return 1;
+                return Redirect.login;
             }
-            return 4;
+            return Redirect.logout;
         }
 
         //Implements Register authentication signature
-        public int Register(User user)
+        public Redirect Register(User user)
         {
             bool flag = true;
             Console.WriteLine(Literal.register);
@@ -66,7 +65,7 @@ namespace ConsoleApp
             if (!flag)
             {
                 Console.WriteLine(Literal.userExist);
-                return 1;
+                return Redirect.login;
             }
             Console.WriteLine(Literal.validPassword);
             Console.Write(Literal.password);
@@ -108,18 +107,18 @@ namespace ConsoleApp
                 flag = validate.IsValidEmail(user.Email);
             }
             balAuth.Register(user);
-            return 1;
+            return Redirect.login;
         }
 
         //Implements SwitchDefault signature
-        public int SwitchDefault()
+        public Redirect SwitchDefault()
         {
             Console.WriteLine(Literal.switchDefault);
             if (balAuth.SwitchDefault())
             {
-                return 0;
+                return Redirect.exit;
             }
-            return 1;
+            return Redirect.login;
         }
     }
 }

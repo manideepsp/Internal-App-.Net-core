@@ -1,5 +1,4 @@
 ﻿using BusinessModel;
-using System;
 //using DataLayer;
 
 namespace ConsoleApp
@@ -7,7 +6,7 @@ namespace ConsoleApp
     /// <summary>
     /// Represents the main program logic for user authentication.
     /// </summary>
-    struct App
+    public class App
     {
         private Authentication auth;  // Object to handle authentication operations
         private User user;  // Object representing user information
@@ -26,113 +25,72 @@ namespace ConsoleApp
         /// Runs the main program logic.
         /// Displays a menu, takes user input, and performs the corresponding actions.
         /// </summary>
-        public void Run()
+        public void Run(Redirect redirect)
         {
+            int input;
+
             Console.WriteLine(Literal.div);
             Console.WriteLine(Literal.menu);
 
-            int input;
             try
-            { 
-                input = Convert.ToInt32(Console.ReadLine()); 
+            {
+                input = Convert.ToInt32(Console.ReadLine());
             }
             catch (FormatException)
             {
                 input = 0;
             }
 
-            int redirect = input;
+            //Redirect redirect;
+            switch (input)
+            {
+                case 0:
+                    redirect = Redirect.exit;
+                    break;
+                case 1:
+                    redirect = Redirect.login;
+                    break;
+                case 2: 
+                    redirect = Redirect.register;
+                    break;
+                case 3:
+                    redirect = Redirect.logout;
+                    break;
+            }
+
             bool flag = true;
             while (flag)
             {
                 switch (redirect)
                 {
                     // Exit
-                    case 0:
-                        flag = false;
-                        Console.WriteLine(Literal.div, Literal.exit);
+                    case Redirect.exit:
+                        //flag = false;
+                        Console.WriteLine(Literal.div + Literal.exit);
                         Environment.Exit(0);
                         break;
                     // Login
-                    case 1:
-                        Console.WriteLine(Literal.div, Literal.login);
+                    case Redirect.login:
+                        Console.WriteLine(Literal.div + Literal.login);
                         redirect = auth.Login(user);
                         break;
                     // Register
-                    case 2:
-                        Console.WriteLine(Literal.div, Literal.register);
+                    case Redirect.register:
+                        Console.WriteLine(Literal.div + Literal.register);
                         redirect = auth.Register(user);
                         break;
                     // Logout
-                    case 3:
+                    case Redirect.logout:
                         Console.WriteLine(Literal.div, Literal.loginSuccess, Literal.logout);
                         redirect = auth.Logout();
                         break;
                     // Default
                     default:
-                        Console.WriteLine(Literal.div, Literal.switchDefault);
+                        Console.WriteLine(Literal.div + Literal.switchDefault);
                         redirect = auth.SwitchDefault();
                         break;
                 }
             }
         }
     }
-    //class App
-    //{
-    //    private Authentication auth;  // Object to handle authentication operations
-    //    private User user;  // Object representing user information
-
-    //    /// <summary>
-    //    /// Constructor for the Program class.
-    //    /// Initializes the auth and user objects.
-    //    /// </summary>
-    //    public App()
-    //    {
-    //        auth = new Authentication();
-    //        user = new User();
-    //    }
-
-    //    /// <summary>
-    //    /// Runs the main program logic.
-    //    /// Displays a menu, takes user input, and performs the corresponding actions.
-    //    /// </summary>
-    //    public void Run()
-    //    {
-    //        Console.WriteLine(Literal.div);
-    //        Console.WriteLine(Literal.menu);
-    //        int input = Convert.ToInt32(Console.ReadLine());
-    //        int redirect = input;
-    //        bool flag = true;
-    //        while (flag)
-    //        {
-    //            switch (redirect)
-    //            {
-    //                // Exit
-    //                case 0:
-    //                    flag = false;
-    //                    break;
-    //                // Login
-    //                case 1:
-    //                    Console.WriteLine(Literal.div, Literal.login);
-    //                    redirect = auth.Login(user);
-    //                    break;
-    //                // Register
-    //                case 2:
-    //                    Console.WriteLine(Literal.div, Literal.register);
-    //                    redirect = auth.Register(user);
-    //                    break;
-    //                // Logout
-    //                case 3:
-    //                    Console.WriteLine(Literal.div, Literal.loginSuccess, Literal.logout);
-    //                    redirect = auth.Logout();
-    //                    break;
-    //                // Default
-    //                default:
-    //                    Console.WriteLine(Literal.div, Literal.switchDefault);
-    //                    redirect = auth.SwitchDefault();
-    //                    break;
-    //            }
-    //        }
-    //    }
-    //}
 }
