@@ -3,6 +3,7 @@
 
 namespace ConsoleApp
 {
+
     /// <summary>
     /// Represents the main program logic for user authentication.
     /// </summary>
@@ -25,38 +26,38 @@ namespace ConsoleApp
         /// Runs the main program logic.
         /// Displays a menu, takes user input, and performs the corresponding actions.
         /// </summary>
-        public void Run(Redirect redirect)
+        public void Run()
         {
-            int input;
+            Redirect redirect;
 
             Console.WriteLine(Literal.div);
             Console.WriteLine(Literal.menu);
 
             try
             {
-                input = Convert.ToInt32(Console.ReadLine());
+                redirect = (Redirect)Convert.ToInt32(Console.ReadLine());
             }
-            catch (FormatException)
+            catch (Exception)
             {
-                input = 0;
+                redirect = Redirect.exit;
             }
 
             //Redirect redirect;
-            switch (input)
-            {
-                case 0:
-                    redirect = Redirect.exit;
-                    break;
-                case 1:
-                    redirect = Redirect.login;
-                    break;
-                case 2: 
-                    redirect = Redirect.register;
-                    break;
-                case 3:
-                    redirect = Redirect.logout;
-                    break;
-            }
+            //switch (input)
+            //{
+            //    case 0:
+            //        redirect = Redirect.exit;
+            //        break;
+            //    case 1:
+            //        redirect = Redirect.login;
+            //        break;
+            //    case 2: 
+            //        redirect = Redirect.register;
+            //        break;
+            //    case 3:
+            //        redirect = Redirect.logout;
+            //        break;
+            //}
 
             bool flag = true;
             while (flag)

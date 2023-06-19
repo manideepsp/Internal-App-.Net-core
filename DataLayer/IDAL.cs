@@ -19,7 +19,7 @@ namespace DataLayer
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
-        bool IsUserExist(string username);
+        bool IsUserExist(User user);
 
         /// <summary>
         /// checks if username and password pair exist in database or not
@@ -27,6 +27,6 @@ namespace DataLayer
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        bool IsLoginExist(string username, string password);
+        bool IsLoginExist(User user);
     }
 }

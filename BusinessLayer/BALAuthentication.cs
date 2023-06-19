@@ -13,11 +13,34 @@ namespace BusinessLayer
         /// <returns></returns>
         public void Register(User user)
         {
-            DataFactory dataFactory = new DataFactory();
-            IDAL dal = dataFactory.CreateObject();
+            DALFactory dataFactory = new DALFactory();
+            IDAL dal = dataFactory.GetDALAuthObj();
 
             dal.Register(user);
             Console.WriteLine(Literal.successRegistration);
+        }
+
+        public bool IsUserExist(User user)
+        {
+            DALFactory dataFactory = new DALFactory();
+            IDAL dal = dataFactory.GetDALAuthObj();
+
+            if (!dal.IsUserExist(user))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool IsLoginExist(User user)
+        {
+            DALFactory dataFactory = new DALFactory();
+            IDAL dal = dataFactory.GetDALAuthObj();
+            if (dal.IsLoginExist(user))
+            {
+                return true;
+            }
+            return false;
         }
 
         /// <summary>
@@ -27,10 +50,10 @@ namespace BusinessLayer
         /// <returns></returns>
         public bool Login(User user)
         {
-            DataFactory dataFactory = new DataFactory();
-            IDAL dal = dataFactory.CreateObject();
+            DALFactory dataFactory = new DALFactory();
+            IDAL dal = dataFactory.GetDALAuthObj();
 
-            if (dal.IsLoginExist(user.Username, user.Password))
+            if (dal.IsLoginExist(user))
             {
                 return true;
             }

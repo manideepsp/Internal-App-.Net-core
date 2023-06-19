@@ -9,40 +9,6 @@ namespace BusinessLayer
     public class BALValidations
     {
         /// <summary>
-        /// Calls data method to check if user name is valid, passes the username and checks if the username exist in the database or not
-        /// </summary>
-        /// <param name="userName"></param>
-        /// <returns></returns>
-        public bool IsValidUsername(string userName)
-        {
-            DataFactory dataFactory = new DataFactory();
-            IDAL dal = dataFactory.CreateObject();
-
-            if (!dal.IsUserExist(userName))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        /// <summary>
-        /// Calls data method to check if the username and password is present in the database or not
-        /// </summary>
-        /// <param name="userName"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        public bool IsValidLogin(string userName, string password)
-        {
-            DataFactory dataFactory = new DataFactory();
-            IDAL dal = dataFactory.CreateObject();
-            if (dal.IsLoginExist(userName, password))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        /// <summary>
         /// checks the validation for the password using regex
         /// </summary>
         /// <param name="password"></param>
@@ -77,8 +43,11 @@ namespace BusinessLayer
         /// <returns></returns>
         public bool IsPasswordEquals(string a, string b)
         {
-            if (a.Equals(b)) return true;
-            else return false;
+            if (a.Equals(b))
+            {
+                return true;
+            }
+            return false;
         }
 
         /// <summary>

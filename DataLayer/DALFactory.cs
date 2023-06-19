@@ -10,7 +10,7 @@
         /// Retruns created object of DALAuthentication as a type of IDAL
         /// </summary>
         /// <returns></returns>
-        public IDAL CreateObject()
+        public IDAL GetDALAuthObj()
         {
             return obj;
         }

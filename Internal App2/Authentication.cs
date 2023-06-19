@@ -62,12 +62,13 @@ namespace ConsoleApp
             Console.WriteLine(Literal.register);
             Console.Write(Literal.username);
             user.Username = Console.ReadLine();
-            flag = validate.IsValidUsername(user.Username); //returns true if username is valid, not already exist
+            flag = balAuth.IsUserExist(user.Username); //returns true if username is valid, not already exist
             if (!flag)
             {
                 Console.WriteLine(Literal.userExist);
                 return Redirect.login;
             }
+
             Console.WriteLine(Literal.validPassword);
             Console.Write(Literal.password);
             user.Password = Console.ReadLine();

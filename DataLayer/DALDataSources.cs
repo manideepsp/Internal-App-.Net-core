@@ -6,7 +6,7 @@ namespace DataLayer
     /// <summary>
     /// Class containing the datasource
     /// </summary>
-    internal class DataSources
+    internal class DALDataSources
     {
         public static List<User> UserData = new List<User>();
     }

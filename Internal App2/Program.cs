@@ -1,12 +1,7 @@
 ﻿using System;
 
-
 namespace ConsoleApp
 {
-    /// <summary>
-    /// contains enumerated types login, logout, register, exit
-    /// </summary>
-    public enum Redirect { login, logout, register, exit }
     internal class Program
     {
         /// <summary>
@@ -18,8 +13,7 @@ namespace ConsoleApp
         static void Main(string[] args)
         {
             App app = new App();
-            Redirect redirect = new Redirect();
-            app.Run(redirect);
+            app.Run();
         }
     }
 }

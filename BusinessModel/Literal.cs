@@ -25,7 +25,6 @@
                 + "\n  Enter: "
                 + "\n* 1. To Login"
                 + "\n* 2. To Register As new user"
-
                 + "\n* enter any other key to exit";
         public static string div = "\n*********************************************";
         public static string switchDefault = "\ndo you want to exit y/n ?";
