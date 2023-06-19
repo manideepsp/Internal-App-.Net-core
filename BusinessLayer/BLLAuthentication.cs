@@ -3,8 +3,10 @@ using DataLayer;
 
 namespace BusinessLayer
 {
-    internal class BALAuthentication : IBALAuthentication
+    internal class BLLAuthentication : IBLLAuthentication
     {
+        DALFactory dataFactory = new DALFactory();
+
         /// <summary>
         /// Implements Register user functionality, validates all the inputs given and calls method to write it to database
         /// </summary>
@@ -13,7 +15,6 @@ namespace BusinessLayer
         /// <returns></returns>
         public void Register(User user)
         {
-            DALFactory dataFactory = new DALFactory();
             IDAL dal = dataFactory.GetDALAuthObj();
 
             dal.Register(user);
@@ -27,7 +28,6 @@ namespace BusinessLayer
         /// <returns></returns>
         public bool IsUserExist(User user)
         {
-            DALFactory dataFactory = new DALFactory();
             IDAL dal = dataFactory.GetDALAuthObj();
 
             if (!dal.IsUserExist(user))
@@ -44,7 +44,6 @@ namespace BusinessLayer
         /// <returns></returns>
         public bool Login(User user)
         {
-            DALFactory dataFactory = new DALFactory();
             IDAL dal = dataFactory.GetDALAuthObj();
 
             if (dal.IsLoginExist(user))

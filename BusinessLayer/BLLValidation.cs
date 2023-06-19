@@ -1,11 +1,12 @@
-﻿using System.Text.RegularExpressions;
+﻿using BusinessModel;
+using System.Text.RegularExpressions;
 
 namespace BusinessLayer
 {
     /// <summary>
     /// contains the logic for the validations of the input given
     /// </summary>
-    internal class BALValidation : IBALValidation
+    internal class BLLValidation : IBLLValidation
     {
         /// <summary>
         /// checks the validation for the password using regex
@@ -14,10 +15,7 @@ namespace BusinessLayer
         /// <returns></returns>
         public bool IsValidPassword(string password)
         {
-            // Regex pattern for password validation
-            string pattern = @"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,}$";
-
-            if(Regex.IsMatch(password, pattern) && password != null)
+            if(Regex.IsMatch(password, Literal.passwordPattern) && password != null)
             {
                 return true;
             }
@@ -55,11 +53,8 @@ namespace BusinessLayer
         /// <param name="email"></param>
         /// <returns></returns>
         public bool IsValidEmail(string email)
-        {
-            // Regex pattern for email validation
-            string pattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
-
-            if(Regex.IsMatch(email, pattern) && email != null)
+        { 
+            if(Regex.IsMatch(email, Literal.emailPattern) && email != null)
             {
                 return true;
             }
@@ -76,10 +71,7 @@ namespace BusinessLayer
         /// <returns></returns>
         public bool IsValidMobile(string mobileNumber)
         {
-            // Regex pattern for validating Indian mobile numbers
-            string pattern = @"^[6-9]\d{9}$";
-
-            if (Regex.IsMatch(mobileNumber, pattern) && mobileNumber != null)
+            if (Regex.IsMatch(mobileNumber, Literal.mobilePattern) && mobileNumber != null)
             {
                 return true;
             }

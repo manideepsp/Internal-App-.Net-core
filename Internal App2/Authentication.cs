@@ -1,6 +1,5 @@
 ﻿using BusinessLayer;
 using BusinessModel;
-using System;
 
 namespace ConsoleApp
 {
@@ -9,6 +8,8 @@ namespace ConsoleApp
     /// </summary>
     public class Authentication
     {
+        BLLFactory balFactory = new BLLFactory();
+
         /// <summary>
         /// Implements login authentication signature
         /// </summary>
@@ -17,9 +18,7 @@ namespace ConsoleApp
         /// <returns></returns>
         public Redirect Login(User user)
         {
-            BALFactory balFactory = new BALFactory();
-            IBALAuthentication balAuthentication = balFactory.GetBalAuthObj();
-
+            IBLLAuthentication balAuthentication = balFactory.GetBalAuthObj();
             Console.WriteLine(Literal.login);
             Console.Write(Literal.username);
             user.Username = Console.ReadLine();
@@ -55,9 +54,8 @@ namespace ConsoleApp
         //Implements Register authentication signature
         public Redirect Register(User user)
         {
-            BALFactory balFactory = new BALFactory();
-            IBALAuthentication balAuthentication = balFactory.GetBalAuthObj();
-            IBALValidation bALValidation = balFactory.GetBalValidationObj();
+            IBLLAuthentication balAuthentication = balFactory.GetBalAuthObj();
+            IBLLValidation bALValidation = balFactory.GetBalValidationObj();
 
             bool flag = true;
             Console.WriteLine(Literal.register);

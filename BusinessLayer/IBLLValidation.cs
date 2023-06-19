@@ -1,6 +1,6 @@
 ﻿namespace BusinessLayer
 {
-    public interface IBALValidation
+    public interface IBLLValidation
     {
         public bool IsValidPassword(string password);
         public bool IsPasswordEquals(string a, string b);

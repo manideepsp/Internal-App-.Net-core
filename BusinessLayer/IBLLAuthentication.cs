@@ -2,7 +2,7 @@
 
 namespace BusinessLayer
 {
-    public interface IBALAuthentication
+    public interface IBLLAuthentication
     {
         public void Register(User user);
         public bool IsUserExist(User user);

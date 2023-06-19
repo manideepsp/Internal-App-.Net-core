@@ -50,5 +50,13 @@
         public static string mobileAgain = "\nEnter Valid Mobile number : ";
         public static string email = "\nEnter Email ID: ";
         public static string emailAgain = "\nEnter Valid Email ID: ";
+
+        // Regex pattern for password validation
+        public static string passwordPattern = @"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,}$";
+        // Regex pattern for email validation
+        public static string emailPattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
+        // Regex pattern for validating Indian mobile numbers
+        public static string mobilePattern = @"^[6-9]\d{9}$";
+
     }
 }

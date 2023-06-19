@@ -1,5 +1,4 @@
 ﻿using BusinessModel;
-//using DataLayer;
 
 namespace ConsoleApp
 {
@@ -41,23 +40,6 @@ namespace ConsoleApp
             {
                 redirect = Redirect.exit;
             }
-
-            //Redirect redirect;
-            //switch (input)
-            //{
-            //    case 0:
-            //        redirect = Redirect.exit;
-            //        break;
-            //    case 1:
-            //        redirect = Redirect.login;
-            //        break;
-            //    case 2: 
-            //        redirect = Redirect.register;
-            //        break;
-            //    case 3:
-            //        redirect = Redirect.logout;
-            //        break;
-            //}
 
             bool flag = true;
             while (flag)
