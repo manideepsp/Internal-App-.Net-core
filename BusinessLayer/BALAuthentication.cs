@@ -50,7 +50,6 @@ namespace BusinessLayer
             ConsoleKeyInfo cki = Console.ReadKey();
             if (cki.Key == ConsoleKey.Y)
             {
-                Literal.Display(Literal.successLogout);
                 return true;
             }
             else

@@ -49,6 +49,7 @@ namespace ConsoleApp
             Console.WriteLine(Literal.logout);
             if (balAuth.Logout())
             {
+                Console.WriteLine(Literal.successLogout);
                 return Redirect.login;
             }
             return Redirect.logout;

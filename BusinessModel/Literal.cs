@@ -51,10 +51,5 @@
         public static string mobileAgain = "\nEnter Valid Mobile number : ";
         public static string email = "\nEnter Email ID: ";
         public static string emailAgain = "\nEnter Valid Email ID: ";
-
-        public static void Display(string s)
-        {
-            Console.WriteLine(s);
-        }
     }
 }
