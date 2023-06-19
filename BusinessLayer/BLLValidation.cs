@@ -1,4 +1,5 @@
 ﻿using BusinessModel;
+using DataLayer;
 using System.Text.RegularExpressions;
 
 namespace BusinessLayer
@@ -8,6 +9,17 @@ namespace BusinessLayer
     /// </summary>
     internal class BLLValidation : IBLLValidation
     {
+        DALFactory dataFactory = new DALFactory();
+        public bool IsValidUsername(User user)
+        {
+            IDAL dal = dataFactory.GetDALAuthObj();
+            if (dal.IsUserExist(user) && user.Username.Length >= 6)
+            {
+                return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// checks the validation for the password using regex
         /// </summary>
@@ -15,7 +27,7 @@ namespace BusinessLayer
         /// <returns></returns>
         public bool IsValidPassword(string password)
         {
-            if(Regex.IsMatch(password, Literal.passwordPattern) && password != null)
+            if (Regex.IsMatch(password, Literal.passwordPattern) && password != null)
             {
                 return true;
             }
@@ -53,8 +65,8 @@ namespace BusinessLayer
         /// <param name="email"></param>
         /// <returns></returns>
         public bool IsValidEmail(string email)
-        { 
-            if(Regex.IsMatch(email, Literal.emailPattern) && email != null)
+        {
+            if (Regex.IsMatch(email, Literal.emailPattern) && email != null)
             {
                 return true;
             }

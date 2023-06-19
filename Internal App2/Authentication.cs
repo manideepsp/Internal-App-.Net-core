@@ -82,7 +82,7 @@ namespace ConsoleApp
 
             Console.Write(Literal.username);
             user.Username = Console.ReadLine();
-            flag = bllAuthentication.IsUserExist(user); //returns true if username is valid, not already exist
+            flag = bllValidation.IsValidUsername(user); //returns true if username is valid, not already exist
             if (!flag)
             {
                 Console.WriteLine(Literal.userExist);
