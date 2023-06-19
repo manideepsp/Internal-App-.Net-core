@@ -11,7 +11,6 @@ namespace ConsoleApp
         BLLFactory bllFactory = new BLLFactory();
         ConsoleKeyInfo inputKey;
 
-
         /// <summary>
         /// Implements login authentication signature
         /// </summary>
@@ -82,7 +81,7 @@ namespace ConsoleApp
 
             Console.Write(Literal.username);
             user.Username = Console.ReadLine();
-            flag = bllValidation.IsValidUsername(user); //returns true if username is valid, not already exist
+            flag = !bllValidation.IsValidUsername(user); //returns true if username is valid, not already exist
             if (!flag)
             {
                 Console.WriteLine(Literal.userExist);
