@@ -52,13 +52,21 @@ namespace BusinessLayer
             // Regex pattern for password validation
             string pattern = @"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,}$";
 
-            return Regex.IsMatch(password, pattern);
-
-            /*if (password == null || password.Length < 8 || Regex.IsMatch(password, "[a-z]") == false || Regex.IsMatch(password, "[A-Z]") == false || Regex.IsMatch(password, "[0-9]") == false)
+            if(Regex.IsMatch(password, pattern) && password != null)
+            {
+                return true;
+            }
+            else
             {
                 return false;
             }
-            return true;*/
+            #region "commented out old functionality"
+            /*if (password == null || password.Length < 8 || Regex.IsMatch(password, "[a-z]") == false || Regex.IsMatch(password, "[A-Z]") == false || Regex.IsMatch(password, "[0-9]") == false)
+              {
+                  return false;
+              }
+              return true;*/
+            #endregion
         }
 
         /// <summary>
@@ -83,7 +91,14 @@ namespace BusinessLayer
             // Regex pattern for email validation
             string pattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
 
-            return Regex.IsMatch(email, pattern);
+            if(Regex.IsMatch(email, pattern) && email != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -96,7 +111,14 @@ namespace BusinessLayer
             // Regex pattern for validating Indian mobile numbers
             string pattern = @"^[6-9]\d{9}$";
 
-            return Regex.IsMatch(mobileNumber, pattern);
+            if (Regex.IsMatch(mobileNumber, pattern) && mobileNumber != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

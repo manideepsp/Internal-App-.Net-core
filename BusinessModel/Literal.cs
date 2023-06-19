@@ -41,10 +41,20 @@
         public static string forgotPassword = "\nWelcome to forgot Password page";
         public static string userExist = "\n user already exist, redirecting to login page.";
 
+        public static string validPassword = "\nPassword should be at least 8 characters long\r\nContains at least one uppercase letter (A-Z)\r\nContains at least one lowercase letter (a-z)\r\nContains at least one digit (0-9)\r\nContains at least one special character (!@#$%^&*())";
         public static string username = "\nEnter Username: ";
         public static string password = "\nEnter Password: ";
+        public static string passwordAgain = "\nEnter Valid Password: ";
         public static string confirmPassword = "\nConfirm your Password: ";
         public static string mobile = "\nEnter Mobile number : ";
+        public static string mobileAgain = "\nEnter Valid Mobile number : ";
         public static string email = "\nEnter Email ID: ";
+        public static string emailAgain = "\nEnter Valid Email ID: ";
+
+
+        public static void Display(string s)
+        {
+            Console.WriteLine(s);
+        }
     }
 }

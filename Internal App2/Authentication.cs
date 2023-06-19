@@ -68,13 +68,13 @@ namespace ConsoleApp
                 Console.WriteLine(Literal.userExist);
                 return 1;
             }
-
+            Console.WriteLine(Literal.validPassword);
             Console.Write(Literal.password);
             user.Password = Console.ReadLine();
             flag = validate.IsValidPassword(user.Password); //returns true if password is valid
             while (!flag)
             {
-                Console.Write(Literal.password);
+                Console.Write(Literal.passwordAgain);
                 user.Password = Console.ReadLine();
                 flag = validate.IsValidPassword(user.Password);
             }
@@ -93,7 +93,7 @@ namespace ConsoleApp
             flag = validate.IsValidMobile(user.Mobile); //returns true if mobile is valid
             while (!flag)
             {
-                Console.Write(Literal.mobile);
+                Console.Write(Literal.mobileAgain);
                 user.Mobile = Console.ReadLine();
                 flag = validate.IsValidMobile(user.Mobile);
             }
@@ -103,7 +103,7 @@ namespace ConsoleApp
             flag = validate.IsValidEmail(user.Email); //returns true if email is valid
             while (!flag)
             {
-                Console.Write(Literal.email);
+                Console.Write(Literal.emailAgain);
                 user.Email = Console.ReadLine();
                 flag = validate.IsValidEmail(user.Email);
             }
