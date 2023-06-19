@@ -18,7 +18,6 @@ namespace BusinessLayer
             IDAL dal = dataFactory.GetDALAuthObj();
 
             dal.Register(user);
-            Console.WriteLine(Literal.successRegistration);
         }
 
         /// <summary>

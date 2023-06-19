@@ -8,8 +8,8 @@ namespace ConsoleApp
     /// </summary>
     public class Authentication
     {
-        BLLFactory balFactory = new BLLFactory();
-        ConsoleKeyInfo cki = Console.ReadKey();
+        BLLFactory bllFactory = new BLLFactory();
+        ConsoleKeyInfo inputKey;
 
 
         /// <summary>
@@ -20,14 +20,14 @@ namespace ConsoleApp
         /// <returns></returns>
         public Redirect Login(User user)
         {
-            IBLLAuthentication balAuthentication = balFactory.GetBllAuthObj();
+            IBLLAuthentication bllAuthentication = bllFactory.GetBllAuthObj();
 
             Console.Write(Literal.username);
             user.Username = Console.ReadLine();
-            Console.WriteLine(Literal.password);
+            Console.Write(Literal.password);
             user.Password = Console.ReadLine();
 
-            if (balAuthentication.Login(user))
+            if (bllAuthentication.Login(user))
             {
                 Console.WriteLine(Literal.loginSuccess);
                 return Redirect.logout;
@@ -35,15 +35,16 @@ namespace ConsoleApp
             else
             {
                 Console.WriteLine(Literal.loginFail);
-                if(cki.Key == ConsoleKey.D1)
+                inputKey= Console.ReadKey();
+                if (inputKey.Key == ConsoleKey.D1)
                 {
                     return Redirect.register;
                 }
-                else if(cki.Key==ConsoleKey.D2)
+                else if (inputKey.Key == ConsoleKey.D2)
                 {
                     return Redirect.ForgotPassword;
                 }
-                else if(cki.Key == ConsoleKey.D3)
+                else if (inputKey.Key == ConsoleKey.D3)
                 {
                     return Redirect.login;
                 }
@@ -58,8 +59,8 @@ namespace ConsoleApp
         public Redirect Logout()
         {
             Console.WriteLine(Literal.logout);
-
-            if (cki.Key == ConsoleKey.Y)
+            inputKey= Console.ReadKey();
+            if (inputKey.Key == ConsoleKey.Y)
             {
                 Console.WriteLine(Literal.logoutSuccess);
                 return Redirect.login;
@@ -74,14 +75,14 @@ namespace ConsoleApp
         /// <returns></returns>
         public Redirect Register(User user)
         {
-            IBLLAuthentication balAuthentication = balFactory.GetBllAuthObj();
-            IBLLValidation bllValidation = balFactory.GetBllValidationObj();
+            IBLLAuthentication bllAuthentication = bllFactory.GetBllAuthObj();
+            IBLLValidation bllValidation = bllFactory.GetBllValidationObj();
 
             bool flag = true;
 
             Console.Write(Literal.username);
             user.Username = Console.ReadLine();
-            flag = balAuthentication.IsUserExist(user); //returns true if username is valid, not already exist
+            flag = bllAuthentication.IsUserExist(user); //returns true if username is valid, not already exist
             if (!flag)
             {
                 Console.WriteLine(Literal.userExist);
@@ -127,11 +128,11 @@ namespace ConsoleApp
                 user.Email = Console.ReadLine();
                 flag = bllValidation.IsValidEmail(user.Email);
             }
-            balAuthentication.Register(user);
-            Console.WriteLine(Literal.registrationSuccess);
+            bllAuthentication.Register(user);
+            Console.WriteLine(Literal.div + Literal.registrationSuccess);
 
-            cki = Console.ReadKey();
-            if(cki.Key == ConsoleKey.D1)
+            inputKey= Console.ReadKey();
+            if (inputKey.Key == ConsoleKey.D1)
             {
                 return Redirect.login;
             }
@@ -145,15 +146,15 @@ namespace ConsoleApp
         /// <returns></returns>
         public Redirect forgotPassword(User user)
         {
-            IBLLAuthentication balAuthentication = balFactory.GetBllAuthObj();
-            IBLLValidation bllValidation = balFactory.GetBllValidationObj();
+            IBLLAuthentication bllAuthentication = bllFactory.GetBllAuthObj();
+            IBLLValidation bllValidation = bllFactory.GetBllValidationObj();
 
             bool flag = true;
 
             Console.Write(Literal.username);
             user.Username = Console.ReadLine();
-            flag = balAuthentication.IsUserExist(user); //returns true if username doesnot exist
-            if(!flag)
+            flag = bllAuthentication.IsUserExist(user); //returns true if username doesnot exist
+            if (!flag)
             {
                 Console.WriteLine(Literal.validPassword);
                 Console.Write(Literal.password);
@@ -174,22 +175,23 @@ namespace ConsoleApp
                     user.ConfirmPassword = Console.ReadLine();
                     flag = bllValidation.IsPasswordEquals(user.Password, user.ConfirmPassword);
                 }
-                balAuthentication.UpdatePassword(user);
+                bllAuthentication.UpdatePassword(user);
                 Console.WriteLine(Literal.forgotPasswordSuccess);
                 return Redirect.login;
             }
             else
             {
                 Console.WriteLine(Literal.forgotPasswordFail);
-                if(cki.Key == ConsoleKey.D1)
+                inputKey= Console.ReadKey();
+                if (inputKey.Key == ConsoleKey.D1)
                 {
                     return Redirect.ForgotPassword;
                 }
-                else if(cki.Key == ConsoleKey.D2)
+                else if (inputKey.Key == ConsoleKey.D2)
                 {
                     return Redirect.login;
                 }
-                else if(cki.Key == ConsoleKey.D3)
+                else if (inputKey.Key == ConsoleKey.D3)
                 {
                     return Redirect.register;
                 }

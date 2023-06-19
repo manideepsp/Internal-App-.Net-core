@@ -44,6 +44,7 @@ namespace ConsoleApp
             bool flag = true;
             while (flag)
             {
+                user = new User();
                 switch (redirect)
                 {
                     // Exit
