@@ -18,9 +18,9 @@ namespace BusinessLayer
         /// <returns></returns>
         public void Register(User user)
         {
-            IDAL dal = dataFactory.GetDALAuthObj();
+            IDAL dalAuth = dataFactory.GetDALAuthObj();
 
-            dal.Register(user);
+            dalAuth.Register(user);
         }
 
         /// <summary>
@@ -30,9 +30,9 @@ namespace BusinessLayer
         /// <returns></returns>
         public bool IsUserExist(User user)
         {
-            IDAL dal = dataFactory.GetDALAuthObj();
+            IDAL dalAuth = dataFactory.GetDALAuthObj();
 
-            if (!dal.IsUserExist(user))
+            if (!dalAuth.IsUserExist(user))
             {
                 return true;
             }
@@ -46,9 +46,9 @@ namespace BusinessLayer
         /// <returns></returns>
         public bool Login(User user)
         {
-            IDAL dal = dataFactory.GetDALAuthObj();
+            IDAL dalAuth = dataFactory.GetDALAuthObj();
 
-            if (dal.IsLoginExist(user))
+            if (dalAuth.IsLoginExist(user))
             {
                 return true;
             }
@@ -61,9 +61,9 @@ namespace BusinessLayer
         /// <param name="user"></param>
         public void UpdatePassword(User user)
         {
-            IDAL dal = dataFactory.GetDALAuthObj();
+            IDAL dalAuth = dataFactory.GetDALAuthObj();
 
-            dal.UpdatePassword(user);
+            dalAuth.UpdatePassword(user);
         }
     }
 }
