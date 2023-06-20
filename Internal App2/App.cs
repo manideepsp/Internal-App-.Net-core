@@ -73,6 +73,9 @@ namespace ConsoleApp
                         Console.WriteLine(Literal.forgotPassword);
                         redirect = auth.forgotPassword(user);
                         break;
+                    default:
+                        user = new User();
+                        break;
                 }
             }
         }

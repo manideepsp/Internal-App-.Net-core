@@ -57,6 +57,7 @@ namespace ConsoleApp
         /// <returns></returns>
         public Redirect Logout()
         {
+
             Console.WriteLine(Literal.logout);
             inputKey = Console.ReadKey();
             if (inputKey.Key == ConsoleKey.Y)
