@@ -13,7 +13,7 @@ namespace BusinessLayer
         public bool IsValidUsername(User user)
         {
             IDAL dal = dataFactory.GetDALAuthObj();
-            if (dal.IsUserExist(user) && user.Username.Length >= 6)
+            if (!dal.IsUserExist(user) && user.Username.Length >= 6)
             {
                 return true;
             }

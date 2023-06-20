@@ -4,7 +4,7 @@ namespace ConsoleApp
 {
 
     /// <summary>
-    /// Represents the main program logic for user authentication.
+    /// App class consisting of run method.
     /// </summary>
     public class App
     {

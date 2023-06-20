@@ -1,5 +1,8 @@
 ﻿namespace ConsoleApp
 {
+    /// <summary>
+    /// /Class Containing Main method
+    /// </summary>
     internal class Program
     {
         /// <summary>
@@ -7,7 +10,6 @@
         /// Creates an instance of the Program class and calls the Run method to start the program.
         /// </summary>
         /// <param name="args">Command line arguments.</param>
-
         static void Main(string[] args)
         {
             App app = new App();

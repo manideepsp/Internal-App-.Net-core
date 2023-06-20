@@ -3,6 +3,9 @@ using DataLayer;
 
 namespace BusinessLayer
 {
+    /// <summary>
+    /// Contains Authentication logic
+    /// </summary>
     internal class BLLAuthentication : IBLLAuthentication
     {
         DALFactory dataFactory = new DALFactory();
@@ -51,6 +54,11 @@ namespace BusinessLayer
             }
             return false;
         }
+
+        /// <summary>
+        /// Updates the password in Datasource
+        /// </summary>
+        /// <param name="user"></param>
         public void UpdatePassword(User user)
         {
             IDAL dal = dataFactory.GetDALAuthObj();

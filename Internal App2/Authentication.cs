@@ -81,15 +81,14 @@ namespace ConsoleApp
 
             Console.Write(Literal.username);
             user.Username = Console.ReadLine();
-            flag = !bllValidation.IsValidUsername(user); //returns true if username is valid, not already exist
-            if (!flag)
+            if (!bllValidation.IsValidUsername(user)) //returns true if username is valid, not already exist, and greater than 6 characters
             {
                 Console.WriteLine(Literal.userExist);
                 return Redirect.login;
             }
 
             Console.WriteLine(Literal.validPassword);
-            flag = false; //returns true if password is valid
+            flag = false;
             while (!flag)
             {
                 Console.Write(Literal.password);
@@ -113,7 +112,7 @@ namespace ConsoleApp
                 flag = bllValidation.IsValidMobile(user.Mobile); //returns true if mobile is valid
             }
 
-            flag = false; 
+            flag = false;
             while (!flag)
             {
                 Console.Write(Literal.emailAgain);
@@ -146,10 +145,10 @@ namespace ConsoleApp
 
             Console.Write(Literal.username);
             user.Username = Console.ReadLine();
-            flag = bllAuthentication.IsUserExist(user); //returns true if username exist
-            if (flag)
+            if (bllAuthentication.IsUserExist(user))  //returns true if username exist
             {
                 Console.WriteLine(Literal.validPassword);
+
                 flag = false;
                 while (!flag)
                 {
@@ -157,6 +156,7 @@ namespace ConsoleApp
                     user.Password = Console.ReadLine();
                     flag = bllValidation.IsValidPassword(user.Password); //returns true if password is valid
                 }
+
                 flag = false;
                 while (!flag)
                 {
@@ -164,6 +164,7 @@ namespace ConsoleApp
                     user.ConfirmPassword = Console.ReadLine();
                     flag = bllValidation.IsPasswordEquals(user.Password, user.ConfirmPassword); //returns true if password mathces
                 }
+
                 bllAuthentication.UpdatePassword(user);
                 Console.WriteLine(Literal.forgotPasswordSuccess);
                 return Redirect.login;
