@@ -81,7 +81,7 @@ namespace ConsoleApp
 
             Console.Write(Literal.username);
             user.Username = Console.ReadLine();
-            if (!bllValidation.IsValidUsername(user)) //returns true if username is valid, not already exist, and greater than 6 characters
+            if (bllValidation.IsValidUsername(user)) //returns true if username is valid, not already exist, and greater than 6 characters
             {
                 Console.WriteLine(Literal.userExist);
                 return Redirect.login;
