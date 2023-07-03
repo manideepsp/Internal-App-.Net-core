@@ -14,7 +14,6 @@ namespace BusinessLayer
         /// Implements Register user functionality, validates all the inputs given and calls method to write it to database
         /// </summary>
         /// <param name="user"></param>
-        /// <param name="lit"></param>
         /// <returns></returns>
         public void Register(User user)
         {

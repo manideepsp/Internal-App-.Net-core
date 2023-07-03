@@ -3,6 +3,9 @@ using DataModel;
 
 namespace DataLayer
 {
+    /// <summary>
+    /// Contains Data Authentication Implementation
+    /// </summary>
     internal class DALAuthentication : IDAL
     {
         /// <summary>
@@ -16,7 +19,12 @@ namespace DataLayer
             DALDataSources.UserData.Add(dataModelUser);
         }
 
-        public static DataUser ConvertToDataModel(User user)
+        /// <summary>
+        /// Converts BusinessModel object to DataModel object
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns>DataModel object</returns>
+        private static DataUser ConvertToDataModel(User user)
         {
             DataUser dataUserObj = new DataUser
             {
@@ -68,7 +76,7 @@ namespace DataLayer
             DataUser obj = DALDataSources.UserData.Find(obj => obj.Username == user.Username);
             if (obj != null)
             {
-                if(obj.Password == user.Password)
+                if (obj.Password == user.Password)
                 {
                     return true;
                 }
