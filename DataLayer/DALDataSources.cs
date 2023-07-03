@@ -1,5 +1,6 @@
 ﻿using BusinessModel;
 using System.Collections.Generic;
+using DataModel;
 
 namespace DataLayer
 {
@@ -8,6 +9,6 @@ namespace DataLayer
     /// </summary>
     internal class DALDataSources
     {
-        public static List<User> UserData = new List<User>();
+        public static List<DataUser> UserData = new List<DataUser>();
     }
 }

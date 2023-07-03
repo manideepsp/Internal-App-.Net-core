@@ -1,4 +1,5 @@
 ﻿using BusinessModel;
+using DataModel;
 
 namespace DataLayer
 {
@@ -11,7 +12,21 @@ namespace DataLayer
         /// <returns></returns>
         public void Register(User user)
         {
-            DALDataSources.UserData.Add(user);
+            DataUser dataModelUser = ConvertToDataModel(user);
+            DALDataSources.UserData.Add(dataModelUser);
+        }
+
+        public static DataUser ConvertToDataModel(User user)
+        {
+            DataUser dataUserObj = new DataUser
+            {
+                Username = user.Username,
+                Email = user.Email,
+                Mobile = user.Mobile,
+                Password = user.Password
+            };
+
+            return dataUserObj;
         }
 
         /// <summary>
@@ -20,7 +35,7 @@ namespace DataLayer
         /// <param name="user"></param>
         public void UpdatePassword(User user)
         {
-            User obj = DALDataSources.UserData.Find(obj => obj.Username == user.Username);
+            DataUser obj = DALDataSources.UserData.Find(obj => obj.Username == user.Username);
             if (obj != null)
             {
                 obj.Password = user.Password;
@@ -34,7 +49,7 @@ namespace DataLayer
         /// <returns></returns>
         public bool IsUserExist(User user)
         {
-            User obj = DALDataSources.UserData.Find(obj => obj.Username == user.Username);
+            DataUser obj = DALDataSources.UserData.Find(obj => obj.Username == user.Username);
             if (obj != null)
             {
                 return true;
@@ -50,7 +65,7 @@ namespace DataLayer
         /// <returns></returns>
         public bool IsLoginExist(User user)
         {
-            User obj = DALDataSources.UserData.Find(obj => obj.Username == user.Username);
+            DataUser obj = DALDataSources.UserData.Find(obj => obj.Username == user.Username);
             if (obj != null)
             {
                 if(obj.Password == user.Password)
