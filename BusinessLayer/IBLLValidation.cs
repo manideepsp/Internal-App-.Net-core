@@ -41,7 +41,7 @@ namespace BusinessLayer
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public bool IsValidUsername(User user);
+        public bool IsValidUsername(BusinessUser user);
 
     }
 }

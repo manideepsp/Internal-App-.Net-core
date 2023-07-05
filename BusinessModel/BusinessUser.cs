@@ -3,7 +3,7 @@
     /// <summary>
     /// This class contains all the properties of object
     /// </summary>
-    public class User
+    public class BusinessUser
     {
         public string Username { get; set; }
         public string Password { get; set; }

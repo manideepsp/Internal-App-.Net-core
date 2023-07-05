@@ -9,7 +9,7 @@ namespace ConsoleApp
     public class App
     {
         private Authentication auth;  // Object to handle authentication operations
-        private User user;  // Object representing user information
+        private BusinessUser user;  // Object representing user information
 
         /// <summary>
         /// Initializes a new instance of the App struct.
@@ -18,7 +18,7 @@ namespace ConsoleApp
         public App()
         {
             auth = new Authentication();
-            user = new User();
+            user = new BusinessUser();
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace ConsoleApp
             bool flag = true;
             while (flag)
             {
-                user = new User();
+                user = new BusinessUser();
                 switch (redirect)
                 {
                     // Exit
@@ -74,7 +74,7 @@ namespace ConsoleApp
                         redirect = auth.forgotPassword(user);
                         break;
                     default:
-                        user = new User();
+                        user = new BusinessUser();
                         break;
                 }
             }

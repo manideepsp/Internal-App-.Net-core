@@ -15,7 +15,7 @@ namespace BusinessLayer
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public void Register(User user)
+        public void Register(BusinessUser user)
         {
             IDAL dalAuth = dataFactory.GetDALAuthObj();
 
@@ -27,7 +27,7 @@ namespace BusinessLayer
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public bool IsUserExist(User user)
+        public bool IsUserExist(BusinessUser user)
         {
             IDAL dalAuth = dataFactory.GetDALAuthObj();
 
@@ -43,7 +43,7 @@ namespace BusinessLayer
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public bool Login(User user)
+        public bool Login(BusinessUser user)
         {
             IDAL dalAuth = dataFactory.GetDALAuthObj();
 
@@ -58,7 +58,7 @@ namespace BusinessLayer
         /// Updates the password in Datasource
         /// </summary>
         /// <param name="user"></param>
-        public void UpdatePassword(User user)
+        public void UpdatePassword(BusinessUser user)
         {
             IDAL dalAuth = dataFactory.GetDALAuthObj();
 

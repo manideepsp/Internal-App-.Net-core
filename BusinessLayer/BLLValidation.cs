@@ -10,7 +10,7 @@ namespace BusinessLayer
     internal class BLLValidation : IBLLValidation
     {
         DALFactory dataFactory = new DALFactory();
-        public bool IsValidUsername(User user)
+        public bool IsValidUsername(BusinessUser user)
         {
             IDAL dal = dataFactory.GetDALAuthObj();
             if (!dal.IsUserExist(user) && user.Username.Length >= 6)

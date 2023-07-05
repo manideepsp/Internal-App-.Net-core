@@ -1,5 +1,6 @@
 ﻿using BusinessModel;
 using DataModel;
+using System.Reflection;
 
 namespace DataLayer
 {
@@ -13,18 +14,22 @@ namespace DataLayer
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public void Register(User user)
+        public void Register(BusinessUser user)
         {
-            DataUser dataModelUser = ConvertToDataModel(user);
+            DataUser dataModelUser = new DataUser();
+            dataModelUser = Utils.ConvertUser.ConvertObject<BusinessUser, DataUser>(user, dataModelUser);
+
+            Console.WriteLine("*****************  " + dataModelUser.Username); //debug purpose
+
             DALDataSources.UserData.Add(dataModelUser);
         }
 
         /// <summary>
-        /// Converts BusinessModel object to DataModel object
+        /// Converts BusinessModel object to DataModel object 
         /// </summary>
         /// <param name="user"></param>
         /// <returns>DataModel object</returns>
-        private static DataUser ConvertToDataModel(User user)
+        private static DataUser ConvertToDataModel(BusinessUser user)
         {
             DataUser dataUserObj = new DataUser
             {
@@ -41,7 +46,7 @@ namespace DataLayer
         /// Updates the user password
         /// </summary>
         /// <param name="user"></param>
-        public void UpdatePassword(User user)
+        public void UpdatePassword(BusinessUser user)
         {
             DataUser obj = DALDataSources.UserData.Find(obj => obj.Username == user.Username);
             if (obj != null)
@@ -55,7 +60,7 @@ namespace DataLayer
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
-        public bool IsUserExist(User user)
+        public bool IsUserExist(BusinessUser user)
         {
             DataUser obj = DALDataSources.UserData.Find(obj => obj.Username == user.Username);
             if (obj != null)
@@ -71,7 +76,7 @@ namespace DataLayer
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public bool IsLoginExist(User user)
+        public bool IsLoginExist(BusinessUser user)
         {
             DataUser obj = DALDataSources.UserData.Find(obj => obj.Username == user.Username);
             if (obj != null)

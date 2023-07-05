@@ -17,7 +17,7 @@ namespace ConsoleApp
         /// <param name="user"></param>
         /// <param name="lit"></param>
         /// <returns></returns>
-        public Redirect Login(User user)
+        public Redirect Login(BusinessUser user)
         {
             IBLLAuthentication bllAuthentication = bllFactory.GetBllAuthObj();
 
@@ -73,7 +73,7 @@ namespace ConsoleApp
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public Redirect Register(User user)
+        public Redirect Register(BusinessUser user)
         {
             IBLLAuthentication bllAuthentication = bllFactory.GetBllAuthObj();
             IBLLValidation bllValidation = bllFactory.GetBllValidationObj();
@@ -137,7 +137,7 @@ namespace ConsoleApp
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public Redirect forgotPassword(User user)
+        public Redirect forgotPassword(BusinessUser user)
         {
             IBLLAuthentication bllAuthentication = bllFactory.GetBllAuthObj();
             IBLLValidation bllValidation = bllFactory.GetBllValidationObj();

@@ -11,26 +11,26 @@ namespace BusinessLayer
         /// Method signature for Register method in Bll Authentication
         /// </summary>
         /// <param name="user"></param>
-        public void Register(User user);
+        public void Register(BusinessUser user);
 
         /// <summary>
         /// method signature for Login method in Bll Authentication
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public bool Login(User user);
+        public bool Login(BusinessUser user);
 
         /// <summary>
         /// method signature for UpdatePassword method in Bll Authentication
         /// </summary>
         /// <param name="user"></param>
-        public void UpdatePassword(User user);
+        public void UpdatePassword(BusinessUser user);
 
         /// <summary>
         /// method signature for IsUserExist method in Bll Authentication
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public bool IsUserExist(User user);
+        public bool IsUserExist(BusinessUser user);
     }
 }
