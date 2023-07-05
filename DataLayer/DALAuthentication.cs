@@ -15,27 +15,29 @@ namespace DataLayer
         /// <returns></returns>
         public void Register(User user)
         {
-            DataUser dataModelUser = ConvertToDataModel(user);
+            //DataUser dataModelUser = ConvertToDataModel(user);
+
+            DataUser dataModelUser = new DataUser(user.Username, user.Password, user.Email, user.Mobile);
             DALDataSources.UserData.Add(dataModelUser);
         }
 
-        /// <summary>
-        /// Converts BusinessModel object to DataModel object
-        /// </summary>
-        /// <param name="user"></param>
-        /// <returns>DataModel object</returns>
-        private static DataUser ConvertToDataModel(User user)
-        {
-            DataUser dataUserObj = new DataUser
-            {
-                Username = user.Username,
-                Email = user.Email,
-                Mobile = user.Mobile,
-                Password = user.Password
-            };
+        ///// <summary>
+        ///// Converts BusinessModel object to DataModel object
+        ///// </summary>
+        ///// <param name="user"></param>
+        ///// <returns>DataModel object</returns>
+        //private static DataUser ConvertToDataModel(User user)
+        //{
+        //    DataUser dataUserObj = new DataUser
+        //    {
+        //        Username = user.Username,
+        //        Email = user.Email,
+        //        Mobile = user.Mobile,
+        //        Password = user.Password
+        //    };
 
-            return dataUserObj;
-        }
+        //    return dataUserObj;
+        //}
 
         /// <summary>
         /// Updates the user password

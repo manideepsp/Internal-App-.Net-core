@@ -2,9 +2,17 @@
 {
     public class DataUser
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Email { get; set; }
-        public string Mobile { get; set; }
+        public string Username;
+        public string Password;
+        public string Email;
+        public string Mobile;
+
+        public DataUser(string Username,  string Password, String Email, string Mobile)
+        {
+            this.Username = Username;
+            this.Password = Password;
+            this.Email = Email;
+            this.Mobile = Mobile;
+        }
     }
 }
