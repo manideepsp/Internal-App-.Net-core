@@ -16,8 +16,8 @@ namespace DataLayer
         /// <returns></returns>
         public void Register(BusinessUser user)
         {
-            DataUser dataModelUser = new DataUser();
-            dataModelUser = Utils.ConvertUser.ConvertObject<BusinessUser, DataUser>(user, dataModelUser);
+            DataUser? dataModelUser = new DataUser();
+            dataModelUser = DALConvertUser.ConvertObject<BusinessUser, DataUser>(user, dataModelUser);
 
             Console.WriteLine("*****************  " + dataModelUser.Username); //debug purpose
 

@@ -1,28 +1,31 @@
 ﻿using System.Reflection;
+using AutoMapper;
 
-namespace Utils
+namespace DataLayer
 {
-    public static class ConvertUser
+    public static class DALConvertUser
     {
         /// <summary>
         /// Generic Method that Converts BusinessModel object to DataModel object and viceversa
+        ///  //ref: https://www.geeksforgeeks.org/c-sharp-type-getproperties-method/
+        ///  //ref: https://learn.microsoft.com/en-us/dotnet/api/system.type?view=net-7.0
         /// </summary>
         /// <typeparam name="TArg1"></typeparam>
         /// <typeparam name="TArg2"></typeparam>
         /// <param name="arg1"></param>
         /// <returns></returns>
-        public static TArg2 ConvertObject<TArg1, TArg2>(TArg1 arg1, TArg2 arg2)
-            where TArg1 : class
-            where TArg2 : class
+        public static TArg2 ConvertObject<TArg1, TArg2>(TArg1? arg1, TArg2? arg2)
+            where TArg1 : new()
+            where TArg2 : new()
         {
             if (arg1 == null || arg2 == null)
             {
                 return arg2;
             }
-            else                                                                                                            // (arg1 is User && arg2 is DataUser)
+            else
             {
-                PropertyInfo[] arg1Props = typeof(TArg1).GetProperties();                                                   //ref: https://www.geeksforgeeks.org/c-sharp-type-getproperties-method/
-                PropertyInfo[] arg2Props = typeof(TArg2).GetProperties();                                                   //ref: https://learn.microsoft.com/en-us/dotnet/api/system.type?view=net-7.0
+                PropertyInfo[] arg1Props = typeof(TArg1).GetProperties();
+                PropertyInfo[] arg2Props = typeof(TArg2).GetProperties();
 
                 foreach (var arg1Prop in arg1Props)
                 {
@@ -36,6 +39,32 @@ namespace Utils
             }
             return arg2;
         }
+
+        //public class AutoMapperConfig
+        //{
+        //    public static IMapper Initialize()
+        //    {
+        //        var config = new MapperConfiguration(cfg =>
+        //        {
+        //            cfg.CreateMap<SourceObject, DestinationObject>()
+        //                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+        //                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => $"{src.Name} ({src.Age} years old)"));
+        //        });
+
+        //        return config.CreateMapper();
+        //    }
+        //}
+
+        //IMapper mapper = AutoMapperConfig.Initialize();
+
+        //SourceObject sourceObject = new SourceObject
+        //{
+        //    Id = 1,
+        //    Name = "John Doe",
+        //    Age = 30
+        //};
+
+        //DestinationObject destinationObject = mapper.Map<DestinationObject>(sourceObject);
 
         #region "different logics for generic method"
 
