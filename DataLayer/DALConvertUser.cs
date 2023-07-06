@@ -1,12 +1,33 @@
-﻿using System.Reflection;
-using AutoMapper;
+﻿using AutoMapper;
+using System.Reflection;
 
 namespace DataLayer
 {
-    public static class DALConvertUser
+    #region "Mannual Mapping"
+    /// <summary>
+    /// Converts BusinessModel object to DataModel object (Mannual Maping)
+    /// </summary>
+    /// <param name="user"></param>
+    /// <returns>DataModel object</returns>
+    //private static DataUser ConvertToDataModel(BusinessUser user)
+    //{
+    //    DataUser dataUserObj = new DataUser
+    //    {
+    //        Username = user.Username,
+    //        Email = user.Email,
+    //        Mobile = user.Mobile,
+    //        Password = user.Password
+    //    };
+
+    //    return dataUserObj;
+    //}
+    #endregion
+
+    #region "Mapping without using AutoMapper"
+    internal static class DALConvertUser
     {
         /// <summary>
-        /// Generic Method that Converts BusinessModel object to DataModel object and viceversa
+        /// Generic Method that Converts BusinessModel object to DataModel object and viceversa (Without using AutoMapper)
         ///  //ref: https://www.geeksforgeeks.org/c-sharp-type-getproperties-method/
         ///  //ref: https://learn.microsoft.com/en-us/dotnet/api/system.type?view=net-7.0
         /// </summary>
@@ -39,32 +60,6 @@ namespace DataLayer
             }
             return arg2;
         }
-
-        //public class AutoMapperConfig
-        //{
-        //    public static IMapper Initialize()
-        //    {
-        //        var config = new MapperConfiguration(cfg =>
-        //        {
-        //            cfg.CreateMap<SourceObject, DestinationObject>()
-        //                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
-        //                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => $"{src.Name} ({src.Age} years old)"));
-        //        });
-
-        //        return config.CreateMapper();
-        //    }
-        //}
-
-        //IMapper mapper = AutoMapperConfig.Initialize();
-
-        //SourceObject sourceObject = new SourceObject
-        //{
-        //    Id = 1,
-        //    Name = "John Doe",
-        //    Age = 30
-        //};
-
-        //DestinationObject destinationObject = mapper.Map<DestinationObject>(sourceObject);
 
         #region "different logics for generic method"
 
@@ -123,5 +118,29 @@ namespace DataLayer
         //    }
         //}
         #endregion
+    }
+    #endregion
+
+    /// <summary>
+    /// AutoMapper which is used to convert businessModelUser to dataModelUser and vice versa
+    /// </summary>
+    internal class AutoMapperConfig
+    {
+        /// <summary>
+        /// AutoMapper method Which contains Mapping configurations and returns IMapper object
+        /// </summary>
+        /// <returns>IMapper mapper;</returns>
+        internal static IMapper Initialize()
+        {
+            var config = new MapperConfiguration(cfg =>
+            {
+                // Multiple Configurations to enable twoside conversion
+                cfg.CreateMap<BusinessModel.BusinessUser, DataModel.DataUser>();
+                cfg.CreateMap<DataModel.DataUser, BusinessModel.BusinessUser>();
+            });
+
+            var mapper = new Mapper(config);
+            return mapper;
+        }
     }
 }

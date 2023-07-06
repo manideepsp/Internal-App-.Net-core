@@ -1,6 +1,6 @@
-﻿using BusinessModel;
+﻿using AutoMapper;
+using BusinessModel;
 using DataModel;
-using System.Reflection;
 
 namespace DataLayer
 {
@@ -12,46 +12,27 @@ namespace DataLayer
         /// <summary>
         /// adds the user details to the database
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="businessModelUser"></param>
         /// <returns></returns>
-        public void Register(BusinessUser user)
+        public void Register(BusinessUser businessModelUser)
         {
-            DataUser? dataModelUser = new DataUser();
-            dataModelUser = DALConvertUser.ConvertObject<BusinessUser, DataUser>(user, dataModelUser);
-
-            Console.WriteLine("*****************  " + dataModelUser.Username); //debug purpose
+            // Auto Mapper Initialization and Mapping businessModelUesr to dataModelUser
+            IMapper mapper = DataLayer.AutoMapperConfig.Initialize();
+            DataUser dataModelUser = mapper.Map<DataUser>(businessModelUser);
 
             DALDataSources.UserData.Add(dataModelUser);
         }
 
         /// <summary>
-        /// Converts BusinessModel object to DataModel object 
-        /// </summary>
-        /// <param name="user"></param>
-        /// <returns>DataModel object</returns>
-        private static DataUser ConvertToDataModel(BusinessUser user)
-        {
-            DataUser dataUserObj = new DataUser
-            {
-                Username = user.Username,
-                Email = user.Email,
-                Mobile = user.Mobile,
-                Password = user.Password
-            };
-
-            return dataUserObj;
-        }
-
-        /// <summary>
         /// Updates the user password
         /// </summary>
-        /// <param name="user"></param>
-        public void UpdatePassword(BusinessUser user)
+        /// <param name="businessModelUser"></param>
+        public void UpdatePassword(BusinessUser businessModelUser)
         {
-            DataUser obj = DALDataSources.UserData.Find(obj => obj.Username == user.Username);
+            DataUser? obj = DALDataSources.UserData.Find(obj => obj.Username == businessModelUser.Username);
             if (obj != null)
             {
-                obj.Password = user.Password;
+                obj.Password = businessModelUser.Password;
             }
         }
 
@@ -60,9 +41,9 @@ namespace DataLayer
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
-        public bool IsUserExist(BusinessUser user)
+        public bool IsUserExist(BusinessUser businessModelUser)
         {
-            DataUser obj = DALDataSources.UserData.Find(obj => obj.Username == user.Username);
+            DataUser? obj = DALDataSources.UserData.Find(obj => obj.Username == businessModelUser.Username);
             if (obj != null)
             {
                 return true;
@@ -76,12 +57,12 @@ namespace DataLayer
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public bool IsLoginExist(BusinessUser user)
+        public bool IsLoginExist(BusinessUser businessModelUser)
         {
-            DataUser obj = DALDataSources.UserData.Find(obj => obj.Username == user.Username);
+            DataUser? obj = DALDataSources.UserData.Find(obj => obj.Username == businessModelUser.Username);
             if (obj != null)
             {
-                if (obj.Password == user.Password)
+                if (obj.Password == businessModelUser.Password)
                 {
                     return true;
                 }

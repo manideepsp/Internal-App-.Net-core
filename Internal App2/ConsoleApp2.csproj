@@ -20,7 +20,6 @@
   <ItemGroup>
     <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj" />
     <ProjectReference Include="..\BusinessModel\BusinessModel.csproj" />
-    <ProjectReference Include="..\test\test.csproj" />
   </ItemGroup>
 
 </Project>

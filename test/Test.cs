@@ -24,6 +24,13 @@ namespace Test
             Console.WriteLine($"\"B--->\"uname: {bobj.Username}, pwd: {bobj.Password}, Email: {bobj.Email}, Mobile: {bobj.Mobile}, cp: {bobj.ConfirmPassword}");
             Console.WriteLine($"\"D--->\"uname: {dobj.Username}, pwd: {dobj.Password}, Email: {dobj.Email}, Mobile: {dobj.Mobile}, ph: {dobj.Phone}");
 
+            dobj.Username = "changed";
+
+            BusinessUser bobj1 = mapper.Map<BusinessUser>(dobj);
+
+            Console.WriteLine($"\"B--->\"uname: {bobj1.Username}, pwd: {bobj1.Password}, Email: {bobj1.Email}, Mobile: {bobj1.Mobile}, cp: {bobj1.ConfirmPassword}");
+            Console.WriteLine($"\"D--->\"uname: {dobj.Username}, pwd: {dobj.Password}, Email: {dobj.Email}, Mobile: {dobj.Mobile}, ph: {dobj.Phone}");
+
             string s1 = "hai";
             string s2 = "hello";
             //DALConvertUser.ConvertObject(s1, s2);
@@ -34,15 +41,14 @@ namespace Test
             //Utils.ConvertUser.ConvertObject(a, b);
         }
     }
-    public class AutoMapperConfig
     {
-        public static IMapper Initialize()
-        {
-            var config = new MapperConfiguration(cfg =>
-                cfg.CreateMap<BusinessUser, DataUser>()
-            );
-            var mapper = new Mapper(config);
-            return mapper;
-        }
+        //public static IMapper InitializeRev()
+        //{
+        //    var configrev = new MapperConfiguration(cfg =>
+        //       cfg.CreateMap<DataUser, BusinessUser>()
+        //   );
+        //    var mapperrev = new Mapper(configrev);
+        //    return mapperrev;
+        //}
     }
 }
